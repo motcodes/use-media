@@ -1,4 +1,4 @@
-import {MediaQueryObject} from '../types';
+import { MediaQueryObject } from '../types';
 import camelToHyphen from './camelToHyphen';
 
 const QUERY_COMBINATOR = ' and ';

@@ -1,6 +1,6 @@
-import {useState, useEffect, useLayoutEffect} from 'react';
-import {queryObjectToString, noop} from './utilities';
-import {Effect, MediaQueryObject} from './types';
+import { useState, useEffect, useLayoutEffect } from 'react';
+import { queryObjectToString, noop } from './utilities';
+import { Effect, MediaQueryObject } from './types';
 
 export const mockMediaQueryList: MediaQueryList = {
   media: '',
@@ -13,39 +13,38 @@ export const mockMediaQueryList: MediaQueryList = {
   dispatchEvent: (_: Event) => true,
 };
 
-const createUseMedia = (effect: Effect) => (
-  rawQuery: string | MediaQueryObject,
-  defaultState = false,
-) => {
-  const [state, setState] = useState(defaultState);
-  const query = queryObjectToString(rawQuery);
+const createUseMedia =
+  (effect: Effect) =>
+  (rawQuery: string | MediaQueryObject, defaultState = false) => {
+    const [state, setState] = useState(defaultState);
+    const query = queryObjectToString(rawQuery);
 
-  effect(() => {
-    let mounted = true;
-    const mediaQueryList: MediaQueryList =
-      typeof window === 'undefined'
-        ? mockMediaQueryList
-        : window.matchMedia(query);
+    effect(() => {
+      let mounted = true;
+      const mediaQueryList: MediaQueryList =
+        typeof window === 'undefined'
+          ? mockMediaQueryList
+          : window.matchMedia(query);
 
-    const onChange = () => {
-      if (!mounted) {
-        return;
-      }
+      const onChange = () => {
+        if (!mounted) {
+          return;
+        }
 
-      setState(Boolean(mediaQueryList.matches));
-    };
+        setState(Boolean(mediaQueryList.matches));
+      };
 
-    mediaQueryList.addListener(onChange);
-    setState(mediaQueryList.matches);
+      mediaQueryList.addListener(onChange);
+      setState(mediaQueryList.matches);
 
-    return () => {
-      mounted = false;
-      mediaQueryList.removeListener(onChange);
-    };
-  }, [query]);
+      return () => {
+        mounted = false;
+        mediaQueryList.removeListener(onChange);
+      };
+    }, [query]);
 
-  return state;
-};
+    return state;
+  };
 
 export const useMedia = createUseMedia(useEffect);
 export const useMediaLayout = createUseMedia(useLayoutEffect);

@@ -1,1 +1,1 @@
-export {default, useMedia, useMediaLayout} from './useMedia';
+export { default, useMedia, useMediaLayout } from './useMedia';
