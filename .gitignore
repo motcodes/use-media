@@ -61,7 +61,7 @@ typings/
 .next
 
 # build output
-lib/
+# lib/
 
 .DS_Store
 

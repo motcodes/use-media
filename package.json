@@ -2,12 +2,12 @@
   "name": "use-media",
   "version": "1.4.0",
   "description": "useMedia React hook",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "files": [
-    "src/"
+    "lib/"
   ],
-  "types": "src/index.d.ts",
-  "typings": "src/index.d.ts",
+  "types": "lib/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "release": "semantic-release"
