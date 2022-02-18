@@ -1,6 +1,6 @@
 # updated use-media for react 17+
 
-`useMedia` React sensor hook that tracks state of a CSS media query.
+`useMedia` React sensor hook that tracks state of a CSS media query. This is a fork from @stremich use-media
 
 ## Install
 
